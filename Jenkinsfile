@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm   // This checks out the branch Jenkins is running on
+      }
+    }
+    stage('Build') {
+      steps {
+        echo 'Building...'
+        // Example: sh 'mvn clean compile' or 'npm install'
+      }
+    }
+    stage('Test') {
+      steps {
+        echo 'Running tests...'
+        // Example: sh 'mvn test' or 'npm test'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying...'
+        // Example: sh './deploy.sh'
+      }
+    }
+  }
+}
