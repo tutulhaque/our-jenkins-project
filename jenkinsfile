@@ -5,33 +5,33 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Checking out branch: ${env.BRANCH_NAME}"
-                checkout scm   // Automatically checks out the branch Jenkins is running on
+                checkout scm
             }
         }
 
         stage('Build') {
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}..."
-                // Example: sh 'mvn clean compile'
-                // Example: sh 'npm install'
+                // sh 'mvn clean compile'
+                // sh 'npm install'
             }
         }
 
         stage('Test') {
             steps {
                 echo "Running tests on branch: ${env.BRANCH_NAME}..."
-                // Example: sh 'mvn test'
-                // Example: sh 'npm test'
+                // sh 'mvn test'
+                // sh 'npm test'
             }
         }
 
         stage('Deploy') {
             when {
-                branch 'main'   // Only deploy from main branch
+                expression { env.BRANCH_NAME == 'main' }  // Works reliably in multibranch pipelines
             }
             steps {
                 echo "Deploying branch: ${env.BRANCH_NAME}..."
-                // Example: sh './deploy.sh'
+                // sh './deploy.sh'
             }
         }
     }
