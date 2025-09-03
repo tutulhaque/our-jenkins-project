@@ -4,14 +4,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo "Checking out branch: ${env.BRANCH_NAME}"
-                checkout scm
+                // Checkout and capture branch info
+                script {
+                    def scmVars = checkout scm
+                    env.CURRENT_BRANCH = scmVars.GIT_BRANCH.replaceAll('origin/', '')
+                    echo "Checked out branch: ${env.CURRENT_BRANCH}"
+                }
             }
         }
 
         stage('Build') {
             steps {
-                echo "Building branch: ${env.BRANCH_NAME}..."
+                echo "Building branch: ${env.CURRENT_BRANCH}..."
                 // sh 'mvn clean compile'
                 // sh 'npm install'
             }
@@ -19,7 +23,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "Running tests on branch: ${env.BRANCH_NAME}..."
+                echo "Running tests on branch: ${env.CURRENT_BRANCH}..."
                 // sh 'mvn test'
                 // sh 'npm test'
             }
@@ -27,10 +31,10 @@ pipeline {
 
         stage('Deploy') {
             when {
-                expression { env.BRANCH_NAME == 'main' }  // Works reliably in multibranch pipelines
+                expression { env.CURRENT_BRANCH == 'main' }  // Only deploy main
             }
             steps {
-                echo "Deploying branch: ${env.BRANCH_NAME}..."
+                echo "Deploying branch: ${env.CURRENT_BRANCH}..."
                 // sh './deploy.sh'
             }
         }
@@ -38,11 +42,12 @@ pipeline {
 
     post {
         success {
-            echo "✅ Pipeline for branch '${env.BRANCH_NAME}' completed successfully!"
+            echo "✅ Pipeline for branch '${env.CURRENT_BRANCH}' completed successfully!"
         }
         failure {
-            echo "❌ Pipeline for branch '${env.BRANCH_NAME}' failed!"
+            echo "❌ Pipeline for branch '${env.CURRENT_BRANCH}' failed!"
         }
     }
 }
+
 
