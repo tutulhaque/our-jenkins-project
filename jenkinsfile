@@ -1,56 +1,48 @@
 pipeline {
     agent any
 
-    environment {
-        PROJECT_NAME = "our-jenkins-project"
-    }
-
-    parameters {
-        booleanParam(name: 'RUN_DEPLOY', defaultValue: false, description: 'Deploy only if true')
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 echo "Checking out branch: ${env.BRANCH_NAME}"
-                checkout scm  // Automatically uses the branch that triggered the build
+                checkout scm   // Automatically checks out the branch Jenkins is running on
             }
         }
 
-        stage('Build & Test') {
-            parallel {
-                stage('Build') {
-                    steps {
-                        echo "Building branch: ${env.BRANCH_NAME}..."
-                        // sh 'mvn clean compile' // or 'npm install'
-                    }
-                }
-                stage('Test') {
-                    steps {
-                        echo "Running tests for branch: ${env.BRANCH_NAME}..."
-                        // sh 'mvn test' // or 'npm test'
-                    }
-                }
+        stage('Build') {
+            steps {
+                echo "Building branch: ${env.BRANCH_NAME}..."
+                // Example: sh 'mvn clean compile'
+                // Example: sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running tests on branch: ${env.BRANCH_NAME}..."
+                // Example: sh 'mvn test'
+                // Example: sh 'npm test'
             }
         }
 
         stage('Deploy') {
             when {
-                expression { params.RUN_DEPLOY && env.BRANCH_NAME == 'main' }
+                branch 'main'   // Only deploy from main branch
             }
             steps {
                 echo "Deploying branch: ${env.BRANCH_NAME}..."
-                // sh './deploy.sh'
+                // Example: sh './deploy.sh'
             }
         }
     }
 
     post {
         success {
-            echo "Pipeline for branch '${env.BRANCH_NAME}' completed successfully!"
+            echo "✅ Pipeline for branch '${env.BRANCH_NAME}' completed successfully!"
         }
         failure {
-            echo "Pipeline for branch '${env.BRANCH_NAME}' failed!"
+            echo "❌ Pipeline for branch '${env.BRANCH_NAME}' failed!"
         }
     }
 }
+
