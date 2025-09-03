@@ -1,0 +1,103 @@
+[
+    {
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+      "title": "The Art of Calm Living",
+      "author": "Ella Hart",
+      "author_img": "https://randomuser.me/api/portraits/women/1.jpg",
+      "posted_date": "2025-04-20",
+      "reading_time": "5",
+      "hashtags": ["#lifestyle", "#mindfulness", "#health"]
+    },
+    {
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+      "title": "Exploring the Future of AI",
+      "author": "Ryan Moore",
+      "author_img": "https://randomuser.me/api/portraits/men/2.jpg",
+      "posted_date": "2025-04-18",
+      "reading_time": "8",
+      "hashtags": ["#technology", "#AI", "#innovation"]
+    },
+    {
+      "id": 3,
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+      "title": "Minimalist Design in 2025",
+      "author": "Sara Wong",
+      "author_img": "https://randomuser.me/api/portraits/women/3.jpg",
+      "posted_date": "2025-04-15",
+      "reading_time": "6",
+      "hashtags": ["#design", "#minimalism", "#creativity"]
+    },
+    {
+      "id": 4,
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+      "title": "Top 10 Travel Destinations",
+      "author": "Leo Summers",
+      "author_img": "https://randomuser.me/api/portraits/men/4.jpg",
+      "posted_date": "2025-04-10",
+      "reading_time": "7",
+      "hashtags": ["#travel", "#wanderlust", "#adventure"]
+    },
+    {
+      "id": 5,
+      "image": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e",
+      "title": "How to Master Remote Work",
+      "author": "Amelia Blake",
+      "author_img": "https://randomuser.me/api/portraits/women/5.jpg",
+      "posted_date": "2025-04-08",
+      "reading_time": "4",
+      "hashtags": ["#remoteWork", "#productivity", "#careertips"]
+    },
+    {
+      "id": 6,
+      "image": "https://images.unsplash.com/photo-1531256379411-39a4d6a4c3d1",
+      "title": "Healthy Eating on a Budget",
+      "author": "James Lee",
+      "author_img": "https://randomuser.me/api/portraits/men/6.jpg",
+      "posted_date": "2025-04-05",
+      "reading_time": "5",
+      "hashtags": ["#health", "#nutrition", "#budget"]
+    },
+    {
+      "id": 7,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+      "title": "Why Coding is for Everyone",
+      "author": "Nina Patel",
+      "author_img": "https://randomuser.me/api/portraits/women/7.jpg",
+      "posted_date": "2025-04-01",
+      "reading_time": "10",
+      "hashtags": ["#coding", "#tech", "#career"]
+    },
+    {
+      "id": 8,
+      "image": "https://images.unsplash.com/photo-1508780709619-79562169bc64",
+      "title": "Photography Tips for Beginners",
+      "author": "Oliver Cruz",
+      "author_img": "https://randomuser.me/api/portraits/men/8.jpg",
+      "posted_date": "2025-03-30",
+      "reading_time": "6",
+      "hashtags": ["#photography", "#beginnerguide", "#creativity"]
+    },
+    {
+      "id": 9,
+      "image": "https://images.unsplash.com/photo-1481277542470-605612bd2d61",
+      "title": "Simple Home Decor Ideas",
+      "author": "Sophia Miles",
+      "author_img": "https://randomuser.me/api/portraits/women/9.jpg",
+      "posted_date": "2025-03-25",
+      "reading_time": "5",
+      "hashtags": ["#homedecor", "#DIY", "#lifestyle"]
+    },
+    {
+      "id": 10,
+      "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+      "title": "Building Better Habits",
+      "author": "Jack Benson",
+      "author_img": "https://randomuser.me/api/portraits/men/10.jpg",
+      "posted_date": "2025-03-22",
+      "reading_time": "7",
+      "hashtags": ["#selfimprovement", "#habits", "#motivation"]
+    }
+  ]
+  
