@@ -1,27 +1,28 @@
 pipeline {
   agent any
- 
+
   stages {
     stage('Checkout') {
       steps {
-        git url: 'https://github.com/tutulhaque/our-jenkins-project.git', branch: 'main'
+        // Checkout the branch that triggered the build
+        checkout scm
       }
     }
     stage('Build') {
       steps {
-        echo 'Building...'
+        echo "Building..."
         // Example: sh 'mvn clean compile' or 'npm install'
       }
     }
     stage('Test') {
       steps {
-        echo 'Running tests...'
+        echo "Running tests..."
         // Example: sh 'mvn test' or 'npm test'
       }
     }
     stage('Deploy') {
       steps {
-        echo 'Deploying...'
+        echo "Deploying..."
         // Example: sh './deploy.sh'
       }
     }
