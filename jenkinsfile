@@ -1,30 +1,53 @@
 
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm   // This checks out the branch Jenkins is running on
-      }
+    environment {
+        // You can define environment variables here if needed
+        PROJECT_NAME = "our-jenkins-project"
     }
-    stage('Build') {
-      steps {
-        echo 'Building...'
-        // Example: sh 'mvn clean compile' or 'npm install'
-      }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Checking out branch: ${env.BRANCH_NAME}"
+                checkout scm  // Automatically uses the branch that triggered the build
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Building branch: ${env.BRANCH_NAME}..."
+                // Example: uncomment the line below for Maven or Node projects
+                // sh 'mvn clean compile'
+                // sh 'npm install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running tests for branch: ${env.BRANCH_NAME}..."
+                // Example: uncomment the line below for Maven or Node projects
+                // sh 'mvn test'
+                // sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying branch: ${env.BRANCH_NAME}..."
+                // Example: uncomment the line below to deploy
+                // sh './deploy.sh'
+            }
+        }
     }
-    stage('Test') {
-      steps {
-        echo 'Running tests...'
-        // Example: sh 'mvn test' or 'npm test'
-      }
+
+    post {
+        success {
+            echo "Pipeline for branch '${env.BRANCH_NAME}' completed successfully!"
+        }
+        failure {
+            echo "Pipeline for branch '${env.BRANCH_NAME}' failed!"
+        }
     }
-    stage('Deploy') {
-      steps {
-        echo 'Deploying...'
-        // Example: sh './deploy.sh'
-      }
-    }
-  }
 }
