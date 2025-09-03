@@ -1,10 +1,12 @@
-
 pipeline {
     agent any
 
     environment {
-        // You can define environment variables here if needed
         PROJECT_NAME = "our-jenkins-project"
+    }
+
+    parameters {
+        booleanParam(name: 'RUN_DEPLOY', defaultValue: false, description: 'Deploy only if true')
     }
 
     stages {
@@ -15,28 +17,29 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                echo "Building branch: ${env.BRANCH_NAME}..."
-                // Example: uncomment the line below for Maven or Node projects
-                // sh 'mvn clean compile'
-                // sh 'npm install'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo "Running tests for branch: ${env.BRANCH_NAME}..."
-                // Example: uncomment the line below for Maven or Node projects
-                // sh 'mvn test'
-                // sh 'npm test'
+        stage('Build & Test') {
+            parallel {
+                stage('Build') {
+                    steps {
+                        echo "Building branch: ${env.BRANCH_NAME}..."
+                        // sh 'mvn clean compile' // or 'npm install'
+                    }
+                }
+                stage('Test') {
+                    steps {
+                        echo "Running tests for branch: ${env.BRANCH_NAME}..."
+                        // sh 'mvn test' // or 'npm test'
+                    }
+                }
             }
         }
 
         stage('Deploy') {
+            when {
+                expression { params.RUN_DEPLOY && env.BRANCH_NAME == 'main' }
+            }
             steps {
                 echo "Deploying branch: ${env.BRANCH_NAME}..."
-                // Example: uncomment the line below to deploy
                 // sh './deploy.sh'
             }
         }
